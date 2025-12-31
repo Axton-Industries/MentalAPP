@@ -69,8 +69,8 @@ export const Game: React.FC = () => {
                         <Button variant="outline" className="flex items-center gap-2" onClick={() => operation && startGame(operation as Operation)}>
                             <RotateCcw size={20} /> Reintentar
                         </Button>
-                        <Button className="flex items-center gap-2" onClick={() => navigate('/')}>
-                            <HomeIcon size={20} /> Inicio
+                        <Button className="flex items-center gap-2" onClick={() => navigate('/cuentas')}>
+                            <HomeIcon size={20} /> Menú
                         </Button>
                     </div>
                 </Card>
@@ -81,7 +81,7 @@ export const Game: React.FC = () => {
     return (
         <div className="min-h-[85vh] flex flex-col items-center p-4">
             <div className="w-full max-w-4xl flex items-center justify-between mb-8">
-                <Button variant="ghost" className="flex items-center gap-2" onClick={() => navigate('/')}>
+                <Button variant="ghost" className="flex items-center gap-2" onClick={() => navigate('/cuentas')}>
                     <ArrowLeft size={20} /> Volver
                 </Button>
                 <div className="flex gap-4">

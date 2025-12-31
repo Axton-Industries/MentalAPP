@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Dashboard } from './pages/Dashboard';
 import { Home } from './pages/Home';
 import { Game } from './pages/Game';
 
@@ -14,14 +15,15 @@ function App() {
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 py-8">
         <Router>
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/cuentas" element={<Home />} />
             <Route path="/game/:operation" element={<Game />} />
           </Routes>
         </Router>
       </div>
 
       <footer className="relative z-10 py-8 text-center text-gray-400 text-sm">
-        &copy; {new Date().getFullYear()} MathMaster — Practica tu agilidad mental
+        &copy; {new Date().getFullYear()} MentalApp — Entrena tu mente
       </footer>
     </div>
   );
