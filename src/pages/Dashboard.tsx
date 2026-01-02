@@ -22,7 +22,7 @@ const categories = [
         color: 'text-purple-600',
         bg: 'bg-purple-50',
         path: '/memory',
-        available: false
+        available: true
     },
     {
         id: 'focus',

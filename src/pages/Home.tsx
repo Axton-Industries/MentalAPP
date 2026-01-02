@@ -19,15 +19,15 @@ export const Home: React.FC = () => {
     const navigate = useNavigate();
 
     return (
-        <div className="min-h-[85vh] flex flex-col items-center justify-center p-4">
+        <div className="min-h-[85vh] flex flex-col items-center py-12 px-4">
             <div className="w-full max-w-4xl mb-8">
                 <Button variant="ghost" className="flex items-center gap-2" onClick={() => navigate('/')}>
                     <ArrowLeft size={20} /> Volver al menú
                 </Button>
             </div>
 
-            <div className="text-center mb-12 animate-fade-in">
-                <div className="inline-flex items-center justify-center p-3 bg-indigo-100 text-indigo-600 rounded-full mb-4">
+            <div className="text-center mb-16 animate-fade-in">
+                <div className="inline-flex items-center justify-center p-3 bg-indigo-600 text-white rounded-2xl mb-4 shadow-lg shadow-indigo-200">
                     <Calculator size={32} />
                 </div>
                 <h1 className="text-5xl font-black text-gray-900 mb-4 tracking-tight">
@@ -59,8 +59,8 @@ export const Home: React.FC = () => {
                         </div>
 
                         <div className="mt-8 flex justify-end">
-                            <Button variant="ghost" className="group-hover:translate-x-2 transition-transform">
-                                Comenzar défi →
+                            <Button variant="ghost" className="group-hover:translate-x-2 transition-transform text-indigo-600">
+                                Comenzar →
                             </Button>
                         </div>
                     </Card>

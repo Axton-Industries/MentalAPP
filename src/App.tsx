@@ -2,6 +2,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Dashboard } from './pages/Dashboard';
 import { Home } from './pages/Home';
 import { Game } from './pages/Game';
+import { MemoryGame } from './pages/MemoryGame';
+import { MemoryHome } from './pages/MemoryHome';
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
             <Route path="/" element={<Dashboard />} />
             <Route path="/cuentas" element={<Home />} />
             <Route path="/game/:operation" element={<Game />} />
+            <Route path="/memory" element={<MemoryHome />} />
+            <Route path="/memory/game/:mode" element={<MemoryGame />} />
           </Routes>
         </Router>
       </div>

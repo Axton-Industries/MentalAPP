@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Timer, Star, RotateCcw, Home as HomeIcon } from 'lucide-react';
+import { ArrowLeft, Timer, Star, RotateCcw, Home as HomeIcon, Zap, Trophy } from 'lucide-react';
 import { useMathGame, type Operation } from '../hooks/useMathGame';
 import { Card } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
@@ -10,7 +10,7 @@ import { MathRenderer } from '../components/MathRenderer';
 export const Game: React.FC = () => {
     const { operation } = useParams<{ operation: string }>();
     const navigate = useNavigate();
-    const { gameState, score, timeLeft, isActive, isGameOver, startGame, checkAnswer } = useMathGame();
+    const { gameState, score, timeLeft, difficulty, streak, isActive, isGameOver, startGame, checkAnswer } = useMathGame();
     const [userAnswer, setUserAnswer] = useState('');
     const [feedback, setFeedback] = useState<'correct' | 'wrong' | null>(null);
     const inputRef = useRef<HTMLInputElement>(null);
@@ -70,17 +70,27 @@ export const Game: React.FC = () => {
 
     return (
         <div className="min-h-[85vh] flex flex-col items-center p-4">
-            <div className="w-full max-w-4xl flex items-center justify-between mb-8">
+            <div className="w-full max-w-5xl flex items-center justify-between mb-8 flex-wrap gap-4">
                 <Button variant="ghost" className="flex items-center gap-2" onClick={() => navigate('/cuentas')}>
                     <ArrowLeft size={20} /> Volver
                 </Button>
-                <div className="flex gap-4">
-                    <Card className="flex items-center gap-2 py-2 px-6">
+                <div className="flex gap-4 flex-wrap justify-center">
+                    <Card className="flex items-center gap-2 py-2 px-4 border-indigo-100">
+                        <Star size={20} className="text-indigo-600" />
+                        <span className="text-sm font-bold text-gray-400 uppercase tracking-tighter">Nivel</span>
+                        <span className="text-xl font-black text-indigo-600">{difficulty + 1}</span>
+                    </Card>
+                    <Card className="flex items-center gap-2 py-2 px-4 border-amber-100">
+                        <Zap size={20} className="text-amber-500 fill-amber-500" />
+                        <span className="text-sm font-bold text-gray-400 uppercase tracking-tighter">Racha</span>
+                        <span className="text-xl font-black text-amber-600">{streak}/5</span>
+                    </Card>
+                    <Card className="flex items-center gap-2 py-2 px-4">
                         <Timer size={20} className="text-indigo-600" />
                         <span className="text-xl font-bold font-mono">{timeLeft}s</span>
                     </Card>
-                    <Card className="flex items-center gap-2 py-2 px-6">
-                        <Star size={20} className="text-amber-500" />
+                    <Card className="flex items-center gap-2 py-2 px-4">
+                        <Trophy size={20} className="text-amber-500" />
                         <span className="text-xl font-bold font-mono">{score}</span>
                     </Card>
                 </div>
@@ -108,7 +118,12 @@ export const Game: React.FC = () => {
                                 inputMode="decimal"
                                 placeholder="?"
                                 value={userAnswer}
-                                onChange={(e) => setUserAnswer(e.target.value.replace(',', '.'))}
+                                onChange={(e) => {
+                                    const val = e.target.value.replace(',', '.');
+                                    if (/^-?\d*\.?\d*$/.test(val) || val === '') {
+                                        setUserAnswer(val);
+                                    }
+                                }}
                                 autoFocus
                             />
                             <Button type="submit" className="w-full mt-6 py-4 text-xl">
