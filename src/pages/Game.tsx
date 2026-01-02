@@ -31,7 +31,7 @@ export const Game: React.FC = () => {
         e.preventDefault();
         if (!userAnswer || isGameOver) return;
 
-        const isCorrect = checkAnswer(parseInt(userAnswer));
+        const isCorrect = checkAnswer(userAnswer);
         setFeedback(isCorrect ? 'correct' : 'wrong');
         setUserAnswer('');
 
@@ -41,17 +41,7 @@ export const Game: React.FC = () => {
     };
 
     const mathString = useMemo(() => {
-        if (!gameState) return '';
-        const { num1, num2, operation } = gameState;
-        switch (operation) {
-            case 'sum': return `${num1} + ${num2}`;
-            case 'sub': return `${num1} - ${num2}`;
-            case 'mul': return `${num1} \\times ${num2}`;
-            case 'div': return `${num1} \\div ${num2}`;
-            case 'pow': return `${num1}^{${num2}}`;
-            case 'sqrt': return `\\sqrt{${num1}}`;
-            default: return '';
-        }
+        return gameState?.question || '';
     }, [gameState]);
 
     if (isGameOver) {
@@ -101,8 +91,11 @@ export const Game: React.FC = () => {
                 }`}>
                 {gameState && (
                     <form onSubmit={handleSubmit} className="flex flex-col items-center">
-                        <div className="flex items-center justify-center gap-8 text-7xl font-black text-gray-900 mb-12">
-                            <div className="flex items-center gap-4">
+                        <div className="flex items-center justify-center gap-8 text-gray-900 mb-12">
+                            <div className={`flex items-center gap-4 transition-all duration-300 ${mathString.length > 25 ? 'text-4xl' :
+                                mathString.length > 15 ? 'text-5xl' :
+                                    'text-7xl'
+                                } font-black`}>
                                 <MathRenderer math={mathString} />
                                 <span className="text-gray-400">=</span>
                             </div>
@@ -111,10 +104,11 @@ export const Game: React.FC = () => {
                         <div className="w-full max-w-xs">
                             <Input
                                 ref={inputRef}
-                                type="number"
+                                type="text"
+                                inputMode="decimal"
                                 placeholder="?"
                                 value={userAnswer}
-                                onChange={(e) => setUserAnswer(e.target.value)}
+                                onChange={(e) => setUserAnswer(e.target.value.replace(',', '.'))}
                                 autoFocus
                             />
                             <Button type="submit" className="w-full mt-6 py-4 text-xl">

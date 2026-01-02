@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Plus, Minus, X, Divide, Zap, Square, ArrowLeft, Calculator } from 'lucide-react';
+import { Plus, Minus, X, Divide, Zap, Square, ArrowLeft, Calculator, Brain, Hash } from 'lucide-react';
 import { Card } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 
@@ -11,6 +11,8 @@ const operations = [
     { id: 'div', name: 'División', icon: Divide, color: 'text-emerald-500', bg: 'bg-emerald-50' },
     { id: 'pow', name: 'Potencias', icon: Zap, color: 'text-purple-500', bg: 'bg-purple-50' },
     { id: 'sqrt', name: 'Raíces', icon: Square, color: 'text-rose-500', bg: 'bg-rose-50' },
+    { id: 'mixed', name: 'Combinado', icon: Brain, color: 'text-indigo-500', bg: 'bg-indigo-50' },
+    { id: 'dec', name: 'Decimales', icon: Hash, color: 'text-gray-600', bg: 'bg-gray-100' },
 ];
 
 export const Home: React.FC = () => {
