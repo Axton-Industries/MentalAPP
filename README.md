@@ -71,8 +71,4 @@ Desafía tu retentiva visual y de corto plazo:
 
 ---
 
-## 📝 Licencia
-
-Este proyecto está bajo la Licencia MIT.
-
 &copy; 2026 MentalApp — Desarrollado con ❤️ para potenciar el cerebro.
