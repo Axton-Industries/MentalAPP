@@ -1,6 +1,7 @@
 {
   "name": "mentalapp",
   "private": true,
+  "homepage": "https://Axton-Industries.github.io/MentalAPP",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
