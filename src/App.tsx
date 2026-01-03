@@ -14,7 +14,7 @@ function App() {
         <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-200/20 blur-[120px] rounded-full" />
       </div>
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 py-8">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
         <Router>
           <Routes>
             <Route path="/" element={<Dashboard />} />
