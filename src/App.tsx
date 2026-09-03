@@ -4,6 +4,12 @@ import { Home } from './pages/Home';
 import { Game } from './pages/Game';
 import { MemoryGame } from './pages/MemoryGame';
 import { MemoryHome } from './pages/MemoryHome';
+import { FocusHome } from './pages/FocusHome';
+import { StroopGame } from './pages/StroopGame';
+import { VisualSearch } from './pages/VisualSearch';
+import { LogicHome } from './pages/LogicHome';
+import { SequencesGame } from './pages/SequencesGame';
+import { RotationGame } from './pages/RotationGame';
 
 function App() {
   return (
@@ -22,6 +28,13 @@ function App() {
             <Route path="/game/:operation" element={<Game />} />
             <Route path="/memory" element={<MemoryHome />} />
             <Route path="/memory/game/:mode" element={<MemoryGame />} />
+            <Route path="/focus" element={<FocusHome />} />
+            <Route path="/focus/game/:mode" element={<StroopGame />} />
+            <Route path="/focus/game/stroop" element={<StroopGame />} />
+            <Route path="/focus/game/visual" element={<VisualSearch />} />
+            <Route path="/logic" element={<LogicHome />} />
+            <Route path="/logic/game/sequences" element={<SequencesGame />} />
+            <Route path="/logic/game/rotation" element={<RotationGame />} />
           </Routes>
         </Router>
       </div>

@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { Calculator, Brain, Zap } from 'lucide-react';
+import { Calculator, Brain, Eye, Compass, Zap } from 'lucide-react';
 import { Card } from '../components/ui/Card';
 
 const categories = [
@@ -20,6 +20,24 @@ const categories = [
         color: 'text-purple-600',
         bg: 'bg-purple-50',
         path: '/memory'
+    },
+    {
+        id: 'focus',
+        name: 'Atención',
+        description: 'Concentración, velocidad de procesamiento y control inhibitorio.',
+        icon: Eye,
+        color: 'text-emerald-600',
+        bg: 'bg-emerald-50',
+        path: '/focus'
+    },
+    {
+        id: 'logic',
+        name: 'Lógica',
+        description: 'Razonamiento deductivo, patrones y habilidades espaciales.',
+        icon: Compass,
+        color: 'text-amber-600',
+        bg: 'bg-amber-50',
+        path: '/logic'
     }
 ];
 
