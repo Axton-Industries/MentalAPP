@@ -1,4 +1,3 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Plus, Minus, X, Divide, Zap, Square, ArrowLeft, Calculator, Brain, Hash } from 'lucide-react';
 import { Card } from '../components/ui/Card';
@@ -15,7 +14,7 @@ const operations = [
     { id: 'dec', name: 'Decimales', icon: Hash, color: 'text-gray-600', bg: 'bg-gray-100' },
 ];
 
-export const Home: React.FC = () => {
+export const Home = () => {
     const navigate = useNavigate();
 
     return (

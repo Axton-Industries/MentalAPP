@@ -1,13 +1,13 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Timer, Star, RotateCcw, Home as HomeIcon, Zap, Trophy } from 'lucide-react';
 import { useMathGame, type Operation } from '../hooks/useMathGame';
 import { Card } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 import { Input } from '../components/ui/Input';
-import { MathRenderer } from '../components/MathRenderer';
+import { InlineMath } from 'react-katex';
 
-export const Game: React.FC = () => {
+export const Game = () => {
     const { operation } = useParams<{ operation: string }>();
     const navigate = useNavigate();
     const { gameState, score, timeLeft, difficulty, streak, isActive, isGameOver, startGame, checkAnswer } = useMathGame();
@@ -106,7 +106,7 @@ export const Game: React.FC = () => {
                                 mathString.length > 15 ? 'text-3xl sm:text-5xl' :
                                     'text-5xl sm:text-7xl'
                                 } font-black break-all text-center justify-center`}>
-                                <MathRenderer math={mathString} />
+                                <InlineMath math={mathString} />
                                 <span className="text-gray-400">=</span>
                             </div>
                         </div>

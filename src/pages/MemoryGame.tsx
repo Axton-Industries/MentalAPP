@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Timer, Star, RotateCcw, Home as HomeIcon, Zap, Trophy, Brain } from 'lucide-react';
 import { useMemoryGame, type MemoryMode } from '../hooks/useMemoryGame';
@@ -6,7 +6,7 @@ import { Card } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 import { Input } from '../components/ui/Input';
 
-export const MemoryGame: React.FC = () => {
+export const MemoryGame = () => {
     const { mode } = useParams<{ mode: string }>();
     const navigate = useNavigate();
     const {
@@ -18,7 +18,6 @@ export const MemoryGame: React.FC = () => {
     const [patternInput, setPatternInput] = useState<number[]>([]);
     const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null);
     const [feedback, setFeedback] = useState<'correct' | 'wrong' | null>(null);
-    const alphaInputRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
         if (mode) {
@@ -163,7 +162,6 @@ export const MemoryGame: React.FC = () => {
                                     <form onSubmit={handleAlphaSubmit} className="w-full max-w-[240px] sm:max-w-xs">
                                         <h3 className="text-center text-gray-400 mb-4 sm:mb-6 uppercase tracking-widest text-xs sm:text-sm font-bold">¿Qué viste?</h3>
                                         <Input
-                                            ref={alphaInputRef}
                                             type="text"
                                             placeholder="..."
                                             value={alphaInput}

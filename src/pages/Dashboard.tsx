@@ -1,6 +1,5 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Calculator, Brain, Target, Compass, Zap } from 'lucide-react';
+import { Calculator, Brain, Zap } from 'lucide-react';
 import { Card } from '../components/ui/Card';
 
 const categories = [
@@ -11,8 +10,7 @@ const categories = [
         icon: Calculator,
         color: 'text-indigo-600',
         bg: 'bg-indigo-50',
-        path: '/cuentas',
-        available: true
+        path: '/cuentas'
     },
     {
         id: 'memory',
@@ -21,32 +19,11 @@ const categories = [
         icon: Brain,
         color: 'text-purple-600',
         bg: 'bg-purple-50',
-        path: '/memory',
-        available: true
-    },
-    {
-        id: 'focus',
-        name: 'Atención',
-        description: 'Ejercicios de concentración y agudeza visual.',
-        icon: Target,
-        color: 'text-emerald-600',
-        bg: 'bg-emerald-50',
-        path: '/focus',
-        available: false
-    },
-    {
-        id: 'logic',
-        name: 'Lógica',
-        description: 'Aciertijos y problemas de razonamiento lateral.',
-        icon: Compass,
-        color: 'text-amber-600',
-        bg: 'bg-amber-50',
-        path: '/logic',
-        available: false
+        path: '/memory'
     }
 ];
 
-export const Dashboard: React.FC = () => {
+export const Dashboard = () => {
     const navigate = useNavigate();
 
     return (
@@ -68,8 +45,8 @@ export const Dashboard: React.FC = () => {
                     <Card
                         key={cat.id}
                         hover
-                        className={`group cursor-pointer p-6 md:p-8 transition-all duration-300 ${!cat.available && 'opacity-60 cursor-not-allowed grayscale'}`}
-                        onClick={() => cat.available && navigate(cat.path)}
+                        className="group cursor-pointer p-6 md:p-8 transition-all duration-300"
+                        onClick={() => navigate(cat.path)}
                     >
                         <div className="flex items-start gap-4 md:gap-6">
                             <div className={`p-4 md:p-5 rounded-2xl ${cat.bg} ${cat.color} transition-transform group-hover:scale-110 duration-300 shrink-0`}>
@@ -78,11 +55,6 @@ export const Dashboard: React.FC = () => {
                             <div className="flex-1 min-w-0">
                                 <div className="flex items-center justify-between mb-2">
                                     <h3 className="text-xl md:text-2xl font-bold text-gray-900 truncate">{cat.name}</h3>
-                                    {!cat.available && (
-                                        <span className="text-[10px] md:text-xs font-bold uppercase tracking-wider px-2 py-1 bg-gray-100 text-gray-500 rounded whitespace-nowrap">
-                                            Próximamente
-                                        </span>
-                                    )}
                                 </div>
                                 <p className="text-gray-500 leading-relaxed text-base md:text-lg">
                                     {cat.description}

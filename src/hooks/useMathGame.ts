@@ -1,4 +1,5 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useCallback } from 'react';
+import { useGameTimer } from './useGameTimer';
 
 export type Operation = 'sum' | 'sub' | 'mul' | 'div' | 'pow' | 'sqrt' | 'mixed' | 'dec';
 
@@ -11,11 +12,9 @@ interface GameState {
 export const useMathGame = () => {
     const [gameState, setGameState] = useState<GameState | null>(null);
     const [score, setScore] = useState(0);
-    const [timeLeft, setTimeLeft] = useState(60);
     const [difficulty, setDifficulty] = useState(0);
     const [streak, setStreak] = useState(0);
-    const [isActive, setIsActive] = useState(false);
-    const [isGameOver, setIsGameOver] = useState(false);
+    const timer = useGameTimer();
 
     const generateProblem = useCallback((op?: Operation) => {
         const currentOp = op || gameState?.operation || 'sum';
@@ -175,11 +174,9 @@ export const useMathGame = () => {
 
     const startGame = (op: Operation) => {
         setScore(0);
-        setTimeLeft(60);
         setDifficulty(0);
         setStreak(0);
-        setIsActive(true);
-        setIsGameOver(false);
+        timer.start();
         generateProblem(op);
     };
 
@@ -210,27 +207,14 @@ export const useMathGame = () => {
         }
     };
 
-    useEffect(() => {
-        let interval: any;
-        if (isActive && timeLeft > 0) {
-            interval = setInterval(() => {
-                setTimeLeft(t => t - 1);
-            }, 1000);
-        } else if (timeLeft === 0) {
-            setIsActive(false);
-            setIsGameOver(true);
-        }
-        return () => clearInterval(interval);
-    }, [isActive, timeLeft]);
-
     return {
         gameState,
         score,
-        timeLeft,
+        timeLeft: timer.timeLeft,
         difficulty,
         streak,
-        isActive,
-        isGameOver,
+        isActive: timer.isActive,
+        isGameOver: timer.isGameOver,
         startGame,
         checkAnswer,
     };

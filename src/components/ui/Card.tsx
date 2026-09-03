@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface CardProps {
     children: React.ReactNode;
     className?: string;
@@ -7,7 +5,7 @@ interface CardProps {
     onClick?: () => void;
 }
 
-export const Card: React.FC<CardProps> = ({ children, className = '', hover = false, onClick }) => {
+export const Card = ({ children, className = '', hover = false, onClick }: CardProps) => {
     return (
         <div
             onClick={onClick}

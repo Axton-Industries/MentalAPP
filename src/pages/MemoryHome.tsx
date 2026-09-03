@@ -1,4 +1,3 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Brain, ArrowLeft, Type, LayoutGrid } from 'lucide-react';
 import { Card } from '../components/ui/Card';
@@ -23,7 +22,7 @@ const memoryGames = [
     },
 ];
 
-export const MemoryHome: React.FC = () => {
+export const MemoryHome = () => {
     const navigate = useNavigate();
 
     return (

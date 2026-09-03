@@ -1,4 +1,5 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useCallback } from 'react';
+import { useGameTimer } from './useGameTimer';
 
 export type MemoryMode = 'alpha' | 'pattern';
 
@@ -12,11 +13,9 @@ export const useMemoryGame = () => {
     const [mode, setMode] = useState<MemoryMode>('alpha');
     const [gameState, setGameState] = useState<GameState | null>(null);
     const [score, setScore] = useState(0);
-    const [timeLeft, setTimeLeft] = useState(60);
     const [difficulty, setDifficulty] = useState(0);
     const [streak, setStreak] = useState(0);
-    const [isActive, setIsActive] = useState(false);
-    const [isGameOver, setIsGameOver] = useState(false);
+    const timer = useGameTimer();
 
     const generateSequence = useCallback((currentMode: MemoryMode, currentDifficulty: number) => {
         if (currentMode === 'alpha') {
@@ -49,11 +48,9 @@ export const useMemoryGame = () => {
     const startGame = (newMode: MemoryMode) => {
         setMode(newMode);
         setScore(0);
-        setTimeLeft(60);
         setDifficulty(0);
         setStreak(0);
-        setIsActive(true);
-        setIsGameOver(false);
+        timer.start();
         generateSequence(newMode, 0);
     };
 
@@ -91,31 +88,15 @@ export const useMemoryGame = () => {
         }
     };
 
-    useEffect(() => {
-        let interval: any;
-        if (isActive && timeLeft > 0) {
-            interval = setInterval(() => {
-                setTimeLeft(t => t - 1);
-            }, 1000);
-        } else if (timeLeft === 0) {
-            setIsActive(false);
-            setIsGameOver(true);
-        }
-        return () => clearInterval(interval);
-    }, [isActive, timeLeft]);
-
     return {
-        mode,
         gameState,
         score,
-        timeLeft,
+        timeLeft: timer.timeLeft,
         difficulty,
         streak,
-        isActive,
-        isGameOver,
+        isGameOver: timer.isGameOver,
         startGame,
         submitAnswer,
-        setStatus,
-        nextRound
+        setStatus
     };
 };
